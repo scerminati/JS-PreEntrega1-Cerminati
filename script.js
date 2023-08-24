@@ -38,7 +38,7 @@ function pelea(combate) {
 
 function puntajeFinal(puntos) {
   alert(
-    "¡El juego ha acabado! Obtienes un puntaje total de " + puntos + "/100"
+    "¡El juego ha acabado! \n\nObtienes un puntaje final de " + puntos + "/100."
   );
 }
 
