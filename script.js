@@ -1,8 +1,30 @@
+// Declaración de variables
+
 let nombre;
 let health = 10;
 let coins = 0;
 let combat = 5;
 let puntaje = 0;
+let castillo = 0;
+let monedas = 10;
+let camino;
+let bosqueB;
+let cabañaB;
+let muelleB;
+let brujaH = 10;
+let brujaC = 2;
+let brujaB;
+let combateB;
+let soga = 0;
+let observarC = 0;
+let observarB;
+let espada = 0;
+let dragonH = 15;
+let dragonC = 10;
+let voces = 1;
+
+//Funciones
+
 function inventario(health, coins, combat) {
   return (inventarioActual =
     "\n\nTienes " +
@@ -42,6 +64,106 @@ function puntajeFinal(puntos) {
   );
 }
 
+function principal() {
+  do {
+    path = Number(
+      prompt(
+        "¡Debes escoger tu camino! Ingresa debajo el número donde deseas dirigirte:\n\n1. Bosque.\n2. Castillo (¡Importante! No podrás regresar).\n3. Muelle" +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2 && path != 3);
+  return path;
+}
+
+function bosque() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu camino. \n\n1. Adentrarte más en el bosque.\n2. Entrar a la cabaña.\n0. Regresar al comienzo." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2 && path != 0);
+  return path;
+}
+
+function cabaña() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu camino. \n\n1. Bajar al sótano.\n2. Explorar la cocina.\n0. Volver hacia atrás." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2 && path != 0);
+  return path;
+}
+
+function brujaCombate() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu acción. \n\n1. Pelear.\n2. Huir" +
+          inventario(health, coins, combat) +
+          bruja(brujaH, brujaC)
+      )
+    );
+  } while (path != 1 && path != 2);
+  return path;
+}
+
+function muelle() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu camino. \n\n1. Ir con el vendendor.\n2. Ir al muelle.\n0. Volver hacia atrás." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2 && path != 0);
+  return path;
+}
+
+function observar() {
+  do {
+    path = Number(
+      prompt(
+        "Un hermoso cuerpo de agua se encuentra frente a ti.\n\nDebes escoger tu acción \n\n1. Seguir mirando el agua.\n0. Volver hacia atrás." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 0);
+  return path;
+}
+
+function castilloF() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu camino. \n\n1. Enfrentar al dragón.\n2. Escapar del dragón." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2);
+  return path;
+}
+
+function dragonCombate() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu acción. \n\n1. Pelear.\n2. Huir" +
+          inventario(health, coins, combat) +
+          dragon(dragonH, dragonC)
+      )
+    );
+  } while (path != 1 && path != 2);
+  return path;
+}
+
+//Comienzo código
+
 nombre = prompt(
   "¡Una cordial bienvenida!\n\nPara comenzar, introduce tu nombre aquí debajo. ¡No te preocupes! No estarás firmando ningún contrato...\nPor ahora."
 );
@@ -62,23 +184,7 @@ alert(
     ", ¡necesitamos de tu ayuda!"
 );
 
-let castillo = 0;
-let monedas = 10;
-let camino;
-let bosqueB;
-let cabañaB;
-let muelleB;
-let brujaH = 10;
-let brujaC = 2;
-let brujaB;
-let combateB;
-let soga = 0;
-let observarC = 0;
-let observarB;
-let espada = 0;
-let dragonH = 15;
-let dragonC = 10;
-let voces = 1;
+
 
 do {
   camino = principal();
@@ -388,101 +494,4 @@ if (castillo == 1) {
   }
 }
 
-// Funciones
-function principal() {
-  do {
-    path = Number(
-      prompt(
-        "¡Debes escoger tu camino! Ingresa debajo el número donde deseas dirigirte:\n\n1. Bosque.\n2. Castillo (¡Importante! No podrás regresar).\n3. Muelle" +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 2 && path != 3);
-  return path;
-}
 
-function bosque() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu camino. \n\n1. Adentrarte más en el bosque.\n2. Entrar a la cabaña.\n0. Regresar al comienzo." +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 2 && path != 0);
-  return path;
-}
-
-function cabaña() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu camino. \n\n1. Bajar al sótano.\n2. Explorar la cocina.\n0. Volver hacia atrás." +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 2 && path != 0);
-  return path;
-}
-
-function brujaCombate() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu acción. \n\n1. Pelear.\n2. Huir" +
-          inventario(health, coins, combat) +
-          bruja(brujaH, brujaC)
-      )
-    );
-  } while (path != 1 && path != 2);
-  return path;
-}
-
-function muelle() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu camino. \n\n1. Ir con el vendendor.\n2. Ir al muelle.\n0. Volver hacia atrás." +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 2 && path != 0);
-  return path;
-}
-
-function observar() {
-  do {
-    path = Number(
-      prompt(
-        "Un hermoso cuerpo de agua se encuentra frente a ti.\n\nDebes escoger tu acción \n\n1. Seguir mirando el agua.\n0. Volver hacia atrás." +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 0);
-  return path;
-}
-
-function castilloF() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu camino. \n\n1. Enfrentar al dragón.\n2. Escapar del dragón." +
-          inventario(health, coins, combat)
-      )
-    );
-  } while (path != 1 && path != 2);
-  return path;
-}
-
-function dragonCombate() {
-  do {
-    path = Number(
-      prompt(
-        "Debes escoger tu acción. \n\n1. Pelear.\n2. Huir" +
-          inventario(health, coins, combat) +
-          dragon(dragonH, dragonC)
-      )
-    );
-  } while (path != 1 && path != 2);
-  return path;
-}
