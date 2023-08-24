@@ -491,5 +491,9 @@ if (castillo == 1) {
 }
 
 if (puntaje == 100) {
-  alert("¡JUEGO PERFECTO! Felicidades.");
+  alert(
+    "¡JUEGO PERFECTO! Felicidades, Sir " +
+      nombre +
+      ", encontraste todos los secretos."
+  );
 }
