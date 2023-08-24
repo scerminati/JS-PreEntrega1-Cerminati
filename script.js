@@ -2,6 +2,7 @@ let nombre;
 let health = 10;
 let coins = 0;
 let combat = 5;
+let puntaje = 0;
 function inventario(health, coins, combat) {
   return (inventarioActual =
     "\n\nTienes " +
@@ -33,6 +34,12 @@ function dragon(health, combat) {
 
 function pelea(combate) {
   return Math.floor(Math.random() * combate);
+}
+
+function puntajeFinal(puntos) {
+  alert(
+    "¡El juego ha acabado! Obtienes un puntaje total de " + puntos + "/100"
+  );
 }
 
 nombre = prompt(
@@ -71,6 +78,7 @@ let observarB;
 let espada = 0;
 let dragonH = 15;
 let dragonC = 10;
+let voces = 1;
 
 do {
   camino = principal();
@@ -94,8 +102,13 @@ do {
               "Sigues la dulce voz, y a medida que te adentras esdoin el bosque, te da un poco de sueño.\n\nTe duermes sin darte cuenta. Algo te picotea en el brazo. Pierdes 1 de vida.\n\nAl despertarte, te encuentras nuevamente frente a los tres caminos."
             );
             health--;
+            if (voces == 1) {
+              voces = 0;
+              puntaje = puntaje + 5;
+            }
             if (health <= 0) {
               alert("¡Te has quedado sin puntos de vida!\n\nFIN DEL JUEGO.");
+              alert(puntajeFinal(puntaje));
             }
             bosqueB = false;
             break;
@@ -141,14 +154,17 @@ do {
                                 health = 15;
                                 brujaB = false;
                                 combateB = false;
+                                puntaje = puntaje + 20;
                               } else if (health <= 0) {
                                 alert(
                                   "¡La bruja te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
                                 );
+
                                 brujaB = false;
                                 combateB = false;
                                 cabañaB = false;
                                 bosqueB = false;
+                                alert(puntajeFinal(puntaje));
                               }
                             }
                             break;
@@ -169,6 +185,7 @@ do {
                     );
                     monedas = 0;
                     coins = coins + 10;
+                    puntaje = puntaje + 10;
                   } else {
                     alert(
                       "Ya exploraste este lugar, te recomiendo que busques en otro lado."
@@ -212,6 +229,7 @@ do {
               if (coins == 10) {
                 soga = 1;
                 coins = 0;
+                puntaje = puntaje + 10;
 
                 alert(
                   "'¡Muchas gracias! Sir " +
@@ -259,6 +277,7 @@ do {
                       );
                       combat = combat + 8;
                       espada = 1;
+                      puntaje = puntaje + 20;
                     }
                   }
                   break;
@@ -313,11 +332,16 @@ if (castillo == 1) {
                 "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
               );
               combateDragonB = false;
+              alert(puntajeFinal(puntaje));
             } else if (dragonH <= 0) {
               alert(
-                "¡Has derrotado al dragón! La gloria será por siempre tuya. ¡Felicidades! El reino de Javastra te debe tu vida. Vivirás el resto de tus días siendo honrado y tienes un honorifico título.\n\nFIN DEL JUEGO."
+                "¡Has derrotado al dragón! La gloria será por siempre tuya. ¡Felicidades! El reino de Javastra te debe tu vida. Vivirás el resto de tus días siendo honrado y tienes un honorifico título. ¡Hurra Sir " +
+                  nombre +
+                  "!\n\nFIN DEL JUEGO."
               );
               combateDragonB = false;
+              puntaje = puntaje + 35;
+              alert(puntajeFinal(puntaje));
             }
           }
           break;
@@ -338,6 +362,7 @@ if (castillo == 1) {
         alert(
           "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
         );
+        alert(puntajeFinal(puntaje));
         break;
       } else {
         alert(
@@ -354,10 +379,15 @@ if (castillo == 1) {
       alert(
         "¡Has logrado huir! No pudiste con el dragón. Si bien no has salido con la gloria, has logrado conservar tu vida. Vivirás el resto de tus días escondido.\n\nFIN DEL JUEGO."
       );
+      puntaje = puntaje + 10;
+      alert(puntajeFinal(puntaje));
     }
   }
 }
 
+if (puntaje == 100) {
+  alert("¡JUEGO PERFECTO! Felicidades.");
+}
 // Funciones
 function principal() {
   do {
