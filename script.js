@@ -184,8 +184,6 @@ alert(
     ", ¡necesitamos de tu ayuda!"
 );
 
-
-
 do {
   camino = principal();
 
@@ -214,7 +212,7 @@ do {
             }
             if (health <= 0) {
               alert("¡Te has quedado sin puntos de vida!\n\nFIN DEL JUEGO.");
-              alert(puntajeFinal(puntaje));
+              puntajeFinal(puntaje);
             }
             bosqueB = false;
             break;
@@ -270,7 +268,7 @@ do {
                                 combateB = false;
                                 cabañaB = false;
                                 bosqueB = false;
-                                alert(puntajeFinal(puntaje));
+                                puntajeFinal(puntaje);
                               }
                             }
                             break;
@@ -438,7 +436,7 @@ if (castillo == 1) {
                 "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
               );
               combateDragonB = false;
-              alert(puntajeFinal(puntaje));
+              puntajeFinal(puntaje);
             } else if (dragonH <= 0) {
               alert(
                 "¡Has derrotado al dragón! La gloria será por siempre tuya. ¡Felicidades! El reino de Javastra te debe tu vida. Vivirás el resto de tus días siendo honrado y tienes un honorifico título. ¡Hurra Sir " +
@@ -447,7 +445,7 @@ if (castillo == 1) {
               );
               combateDragonB = false;
               puntaje = puntaje + 35;
-              alert(puntajeFinal(puntaje));
+              puntajeFinal(puntaje);
               if (puntaje == 100) {
                 alert("¡JUEGO PERFECTO! Felicidades.");
               }
@@ -471,7 +469,7 @@ if (castillo == 1) {
         alert(
           "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
         );
-        alert(puntajeFinal(puntaje));
+        puntajeFinal(puntaje);
         break;
       } else {
         alert(
@@ -489,9 +487,7 @@ if (castillo == 1) {
         "¡Has logrado huir! No pudiste con el dragón. Si bien no has salido con la gloria, has logrado conservar tu vida. Vivirás el resto de tus días escondido.\n\nFIN DEL JUEGO."
       );
       puntaje = puntaje + 10;
-      alert(puntajeFinal(puntaje));
+      puntajeFinal(puntaje);
     }
   }
 }
-
-
