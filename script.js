@@ -22,11 +22,20 @@ function bruja(health, combat) {
     " puntos de combate.");
 }
 
+function dragon(health, combat) {
+  return (dragonActual =
+    "\n\nEl dragón tiene " +
+    health +
+    " puntos de vida y " +
+    combat +
+    " puntos de combate.");
+}
+
 function pelea(combate) {
   return Math.floor(Math.random() * combate);
 }
 
-/*nombre = prompt(
+nombre = prompt(
   "¡Una cordial bienvenida!\n\nPara comenzar, introduce tu nombre aquí debajo. ¡No te preocupes! No estarás firmando ningún contrato...\nPor ahora."
 );
 while (nombre == "" || nombre == null) {
@@ -44,7 +53,7 @@ alert(
   "Presta mucha atención.\n\nVerás, el castillo que ves en el camino de adelante, es custodiado por un enorme dragón que lo ha invadido, y ha sacado a todos con su temible fuego hace algunas lunas llenas atrás. El castillo contaba con un puente que cruza el río, pero el fuego del dragón lo ha deshecho. Si tomas ese camino, no podrás regresar. ¡Pero necesitamos que vayas a por él! No estamos apurados, debo confesarte, pero nos gustaria que nos puedas ayudar.\n\nPor otro lado, en el camino de la izquierda, tienes el bosque encantado. Puedes descubrir algún que otro encanto en él, podrías investigarlo, y siempre puedes regresar aquí... Si no mueres en el intento, claro. En el bosque hay criaturas que pueden atentar contra ti.\n\nPor último, en este camino que tienes a la derecha, irás al muelle, donde se encuentra un pequeño poblado, ahí se han refugiado la mayoría de los sirvientes del castillo. El rey y la reina se encuentran seguros en un lugar que no puedo decirte...\n\nEn fin, Sir " +
     nombre +
     ", ¡necesitamos de tu ayuda!"
-);*/
+);
 
 let castillo = 0;
 let monedas = 10;
@@ -60,6 +69,8 @@ let soga = 0;
 let observarC = 0;
 let observarB;
 let espada = 0;
+let dragonH = 15;
+let dragonC = 10;
 
 do {
   camino = principal();
@@ -102,6 +113,13 @@ do {
                 case 1:
                   brujaB = true;
                   while (brujaB) {
+                    if (brujaH <= 0) {
+                      alert(
+                        "Ya has derrotado a la bruja, no hay nada más que ver aquí"
+                      );
+
+                      brujaB = false;
+                    }
                     if (brujaH > 0) {
                       alert(
                         "Una horrible figura te observa desde una esquina. Observa que sus manos está haciendo movimientos extraños. ¡Deberás derrotar a la bruja!"
@@ -111,14 +129,6 @@ do {
                         caminoBruja = brujaCombate();
                         switch (caminoBruja) {
                           case 1:
-                            if (brujaH <= 0) {
-                              alert(
-                                "Ya has derrotado a la bruja, no hay nada más que ver aquí"
-                              );
-
-                              brujaB = false;
-                              combateB = false;
-                            }
                             if (brujaH > 0 && health > 0) {
                               brujaH = brujaH - pelea(combat);
                               health = health - pelea(brujaC);
@@ -263,6 +273,92 @@ do {
   }
 } while (castillo == 0 && health > 0);
 
+if (castillo == 1) {
+  alert(
+    "Ya estamos en la recta final de la aventura. Recuerda, no hay vuelta atrás. De aquí salimos con la victoria o con la muerte, ¡pero a no desesperar, Sir " +
+      nombre +
+      "! Confio plenamente en ti y en tus habilidades."
+  );
+  alert(
+    "El castillo se encuentra a lo lejos, lo ves que está a unas leguas de distancia. El puente roto está frente a ti ahora, y debes cruzarlo."
+  );
+  if (soga == 1) {
+    alert(
+      "¡Fuiste lo suficientemente astuto como para traer la soga contigo! Cruzas con tu soga sin problema y pasas por las puertas del castillo."
+    );
+  } else {
+    alert(
+      "Cruzar por el río provocó que te cansaras y que te hicieras algo de daño en el proceso. Aún así, llegas a las puertas del castillo y entras."
+    );
+    health = health - 3;
+  }
+
+  alert(
+    "Un gran salón se impone frente a ti. El enorme dragón se encuentra ahí, te ve llegar y abre la boca para escupir fuego. ¡Debes hacer algo al respecto!"
+  );
+
+  caminoCastillo = castilloF();
+  if (caminoCastillo == 1) {
+    combateDragonB = true;
+    while (combateDragonB) {
+      caminoDragon = dragonCombate();
+      switch (caminoDragon) {
+        case 1:
+          if (dragonH > 0 && health > 0) {
+            dragonH = dragonH - pelea(combat);
+            health = health - pelea(dragonC);
+
+            if (health <= 0) {
+              alert(
+                "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
+              );
+              combateDragonB = false;
+            } else if (dragonH <= 0) {
+              alert(
+                "¡Has derrotado al dragón! La gloria será por siempre tuya. ¡Felicidades! El reino de Javastra te debe tu vida. Vivirás el resto de tus días siendo honrado y tienes un honorifico título.\n\nFIN DEL JUEGO."
+              );
+              combateDragonB = false;
+            }
+          }
+          break;
+
+        case 2:
+          caminoCastillo = 2;
+          break;
+      }
+    }
+  }
+  if (caminoCastillo == 2) {
+    alert(
+      "¡Has decidido huir! Debes correr como tan rápido te den las piernas. El dragón es demasiado fuerte y necesitas salir de ahí. ¡Conoces la salida, es por un costado del castillo! Debes correr, antes que te alcance el dragón!"
+    );
+    for (let i = 0; i < 5; i++) {
+      health = health - pelea(dragonC / 2);
+      if (health <= 0) {
+        alert(
+          "¡El dragón te ha derrotado! Te has quedado sin vida.\n\nFIN DEL JUEGO."
+        );
+        break;
+      } else {
+        alert(
+          "¡Huye! Turno " +
+            (i + 1) +
+            "." +
+            inventario(health, coins, combat) +
+            dragon(dragonH, dragonC)
+        );
+      }
+    }
+
+    if (health > 0) {
+      alert(
+        "¡Has logrado huir! No pudiste con el dragón. Si bien no has salido con la gloria, has logrado conservar tu vida. Vivirás el resto de tus días escondido.\n\nFIN DEL JUEGO."
+      );
+    }
+  }
+}
+
+// Funciones
 function principal() {
   do {
     path = Number(
@@ -333,5 +429,30 @@ function observar() {
       )
     );
   } while (path != 1 && path != 0);
+  return path;
+}
+
+function castilloF() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu camino. \n\n1. Enfrentar al dragón.\n2. Escapar del dragón." +
+          inventario(health, coins, combat)
+      )
+    );
+  } while (path != 1 && path != 2);
+  return path;
+}
+
+function dragonCombate() {
+  do {
+    path = Number(
+      prompt(
+        "Debes escoger tu acción. \n\n1. Pelear.\n2. Huir" +
+          inventario(health, coins, combat) +
+          dragon(dragonH, dragonC)
+      )
+    );
+  } while (path != 1 && path != 2);
   return path;
 }
