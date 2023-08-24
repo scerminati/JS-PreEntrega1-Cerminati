@@ -446,9 +446,6 @@ if (castillo == 1) {
               combateDragonB = false;
               puntaje = puntaje + 35;
               puntajeFinal(puntaje);
-              if (puntaje == 100) {
-                alert("¡JUEGO PERFECTO! Felicidades.");
-              }
             }
           }
           break;
@@ -490,4 +487,8 @@ if (castillo == 1) {
       puntajeFinal(puntaje);
     }
   }
+}
+
+if (puntaje == 100) {
+  alert("¡JUEGO PERFECTO! Felicidades.");
 }
