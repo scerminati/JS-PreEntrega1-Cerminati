@@ -452,7 +452,7 @@ if (castillo == 1) {
 
         case 2:
           caminoCastillo = 2;
-          combateDragon = false;
+          combateDragonB = false;
           break;
       }
     }
